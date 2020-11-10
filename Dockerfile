@@ -1,5 +1,4 @@
 FROM alpine:3.10.2
-MAINTAINER Serhiy Mitrovtsiy <mitrovtsiy@ukr.net>
 
 ARG KUBE_VERSION="1.19.0"
 
@@ -11,17 +10,12 @@ RUN chmod +x /entrypoint.sh && \
     chmod +x /usr/local/bin/kubectl && \
     rm -rf /var/cache/apk/*
 
-RUN if [ -z "$AWS_ACCESS_KEY_ID" ]; 
-    then
-        echo "No $AWS_ACCESS_KEY_ID was set. Ignoring AWS CLI.";
-    else
-        apk add --no-cache \
+RUN apk add --no-cache \
         python3 \
         py3-pip \
-        && pip3 install --upgrade pip \
-        && pip3 install awscli \
-        && rm -rf /var/cache/apk/* ;
-    fi
+    && pip3 install --upgrade pip \
+    && pip3 install awscli \
+    && rm -rf /var/cache/apk/* ;
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["cluster-info"]
