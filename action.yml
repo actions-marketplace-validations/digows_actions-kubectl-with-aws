@@ -1,6 +1,6 @@
-name: 'Kuberentes (k8s) cli - kubectl'
-description: 'GitHub Action for interacting with kubectl (k8s)'
-author: 'Serhiy Mytrovtsiy <mitrovtsiy@ukr.net>'
+name: 'Kubernetes (k8s) cli - kubectl with AWS cli'
+description: 'GitHub Action for interacting with kubectl (k8s) being possible to authenticate to an AKS cluster via aws cli'
+author: 'Rodrigo P. Fraga <rodrigo.p.fraga@gmail.com>'
 branding:
   icon: 'terminal'
   color: 'blue'
@@ -15,6 +15,10 @@ inputs:
     description: 'Kubernetes cluster password'
   KUBE_CERTIFICATE:
     description: 'Cluster CA certificate'
+  AWS_ACCESS_KEY_ID:
+    description: 'AWS access key id'
+  AWS_SECRET_ACCESS_KEY:
+    description: 'AWS secret key id'
 runs:
   using: 'docker'
   image: 'Dockerfile'
