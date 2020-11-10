@@ -11,15 +11,13 @@ RUN chmod +x /entrypoint.sh && \
     chmod +x /usr/local/bin/kubectl && \
     rm -rf /var/cache/apk/*
     
-RUN apk update && apk add \
-	ca-certificates \
-	groff \
-	less \
-	python \
-	py-pip \
-	&& rm -rf /var/cache/apk/* \
-  && pip install pip --upgrade \
-  && pip install awscli
+RUN apk add --no-cache \
+        python3 \
+        py3-pip \
+    && pip3 install --upgrade pip \
+    && pip3 install \
+        awscli \
+    && rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["cluster-info"]
