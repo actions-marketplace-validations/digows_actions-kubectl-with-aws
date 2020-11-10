@@ -30,5 +30,6 @@ if [ ! -f "$HOME/.kube/config" ]; then
 fi
 
 echo "/usr/local/bin/kubectl" >> $GITHUB_PATH
+echo "/usr/local/bin/aws" >> $GITHUB_PATH
 
 kubectl $*
