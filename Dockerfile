@@ -11,8 +11,15 @@ RUN chmod +x /entrypoint.sh && \
     chmod +x /usr/local/bin/kubectl && \
     rm -rf /var/cache/apk/*
     
-RUN curl -o /usr/bin/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.17.7/2020-07-08/bin/linux/amd64/aws-iam-authenticator
-RUN chmod +x /usr/bin/aws-iam-authenticator
+RUN apk update && apk add \
+	ca-certificates \
+	groff \
+	less \
+	python \
+	py-pip \
+	&& rm -rf /var/cache/apk/* \
+  && pip install pip --upgrade \
+  && pip install awscli
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["cluster-info"]
