@@ -10,14 +10,21 @@ RUN chmod +x /entrypoint.sh && \
     curl -L https://storage.googleapis.com/kubernetes-release/release/v$KUBE_VERSION/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl && \
     chmod +x /usr/local/bin/kubectl && \
     rm -rf /var/cache/apk/*
-    
-RUN apk add --no-cache \
+
+if [ -z "$var" ]; then echo "var is blank"; else echo "var is set to '$var'"; fi
+
+
+RUN if [ -z "$AWS_ACCESS_KEY_ID" ]; 
+    then
+        echo "No $AWS_ACCESS_KEY_ID was set. Ignoring AWS CLI.";
+    else
+        apk add --no-cache \
         python3 \
         py3-pip \
-    && pip3 install --upgrade pip \
-    && pip3 install \
-        awscli \
-    && rm -rf /var/cache/apk/*
+        && pip3 install --upgrade pip \
+        && pip3 install awscli \
+        && rm -rf /var/cache/apk/* ;
+    fi
 
 ENTRYPOINT ["/entrypoint.sh"]
 CMD ["cluster-info"]
