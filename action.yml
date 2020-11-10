@@ -1,5 +1,5 @@
-name: 'Kubernetes (k8s) cli - kubectl with AWS cli'
-description: 'GitHub Action for interacting with kubectl (k8s) being possible to authenticate to an AKS cluster via aws cli'
+name: 'Generic Kubernetes client (kubectl) with AWS cli'
+description: 'GitHub Action for interacting with kubectl being possible to authenticate to an EKS cluster via aws cli'
 author: 'Rodrigo P. Fraga <rodrigo.p.fraga@gmail.com>'
 branding:
   icon: 'terminal'
