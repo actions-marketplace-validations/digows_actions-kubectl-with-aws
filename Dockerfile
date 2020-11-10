@@ -1,7 +1,7 @@
 FROM alpine:3.10.2
 MAINTAINER Serhiy Mitrovtsiy <mitrovtsiy@ukr.net>
 
-ARG KUBE_VERSION="1.17.9"
+ARG KUBE_VERSION="1.19.0"
 
 COPY entrypoint.sh /entrypoint.sh
 
@@ -10,9 +10,6 @@ RUN chmod +x /entrypoint.sh && \
     curl -L https://storage.googleapis.com/kubernetes-release/release/v$KUBE_VERSION/bin/linux/amd64/kubectl -o /usr/local/bin/kubectl && \
     chmod +x /usr/local/bin/kubectl && \
     rm -rf /var/cache/apk/*
-
-if [ -z "$var" ]; then echo "var is blank"; else echo "var is set to '$var'"; fi
-
 
 RUN if [ -z "$AWS_ACCESS_KEY_ID" ]; 
     then
