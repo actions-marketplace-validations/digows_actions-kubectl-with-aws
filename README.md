@@ -1,15 +1,13 @@
-# kubectl
+# Kuberntes client (kubectl) with AWS cli
 
 [![Preview](https://serhiy.s3.eu-central-1.amazonaws.com/Github_repo/kubectl/logo.png)](https://cloud.google.com)
-
-GitHub Action for interacting with kubectl ([k8s](https://kubernetes.io))
 
 ## Usage
 To use kubectl put this step into your workflow:
 
 ### Authorization with config file
 ```yaml
-- uses: actions-hub/kubectl@master
+- uses: digows/actions-kubectl-with-aws@1.19.0
   env:
     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
   with:
@@ -18,7 +16,7 @@ To use kubectl put this step into your workflow:
 
 ### Authorization with credentials
 ```yaml
-- uses: actions-hub/kubectl@master
+- uses: digows/actions-kubectl-with-aws@1.19.0
   env:
     KUBE_HOST: ${{ secrets.KUBE_HOST }}
     KUBE_USERNAME: ${{ secrets.KUBE_USERNAME }}
@@ -28,9 +26,16 @@ To use kubectl put this step into your workflow:
     args: get pods
 ```
 
-## Environment variables
-All these variables need to authorize to kubernetes cluster.  
-I recommend using secrets for this.
+### Authorization with AWS cli
+```yaml
+- uses: digows/actions-kubectl-with-aws@1.19.0
+  env:
+    KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  with:
+    args: get pods
+```
 
 ### KUBECONFIG file
 First options its to use [kubeconfig file](https://kubernetes.io/docs/concepts/configuration/organize-cluster-access-kubeconfig/).  
@@ -73,7 +78,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: actions-hub/kubectl@master
+      - uses: digows/actions-kubectl-with-aws@1.19.0
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
@@ -91,27 +96,14 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: actions-hub/kubectl@master
+      - uses: digows/actions-kubectl-with-aws@1.19.0
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
 
-      - uses: actions-hub/kubectl@master
+      - uses: digows/actions-kubectl-with-aws@1.19.0
         with:
           args: get pods
 ```
 
-## Versions
-If you need a specific version of kubectl, make a PR with a specific version number.
-After accepting PR the new release will be created.   
-To use a specific version of kubectl use:
-
-```yaml
-- uses: actions-hub/kubectl@1.14.3
-  env:
-    KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
-  with:
-    args: get pods
-```
-
 ## Licence
-[MIT License](https://github.com/actions-hub/kubectl/blob/master/LICENSE)
+[MIT License](https://github.com/digows/actions-kubectl-with-aws/blob/master/LICENSE)
