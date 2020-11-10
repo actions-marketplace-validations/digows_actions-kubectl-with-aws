@@ -1,4 +1,4 @@
-# Kuberntes client (kubectl) with AWS cli
+# Github Action for Kuberntes client (kubectl) with AWS cli
 
 [![Preview](https://serhiy.s3.eu-central-1.amazonaws.com/Github_repo/kubectl/logo.png)](https://cloud.google.com)
 
