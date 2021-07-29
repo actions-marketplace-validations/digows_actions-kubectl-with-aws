@@ -7,7 +7,7 @@ To use kubectl put this step into your workflow:
 
 ### Authorization with config file
 ```yaml
-- uses: digows/actions-kubectl-with-aws@1.19.0
+- uses: digows/actions-kubectl-with-aws@1.21.2
   env:
     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
   with:
@@ -16,7 +16,7 @@ To use kubectl put this step into your workflow:
 
 ### Authorization with credentials
 ```yaml
-- uses: digows/actions-kubectl-with-aws@1.19.0
+- uses: digows/actions-kubectl-with-aws@1.21.2
   env:
     KUBE_HOST: ${{ secrets.KUBE_HOST }}
     KUBE_USERNAME: ${{ secrets.KUBE_USERNAME }}
@@ -28,7 +28,7 @@ To use kubectl put this step into your workflow:
 
 ### Authorization with AWS cli
 ```yaml
-- uses: digows/actions-kubectl-with-aws@1.19.0
+- uses: digows/actions-kubectl-with-aws@1.21.2
   env:
     KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -78,7 +78,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: digows/actions-kubectl-with-aws@1.19.0
+      - uses: digows/actions-kubectl-with-aws@1.21.2
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
         with:
@@ -96,11 +96,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: digows/actions-kubectl-with-aws@1.19.0
+      - uses: digows/actions-kubectl-with-aws@1.21.2
         env:
           KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
 
-      - uses: digows/actions-kubectl-with-aws@1.19.0
+      - uses: digows/actions-kubectl-with-aws@1.21.2
         with:
           args: get pods
 ```

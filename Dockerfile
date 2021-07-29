@@ -1,6 +1,6 @@
 FROM alpine:3.10.2
 
-ARG KUBE_VERSION="1.19.0"
+ARG KUBE_VERSION="1.21.2"
 
 COPY entrypoint.sh /entrypoint.sh
 
